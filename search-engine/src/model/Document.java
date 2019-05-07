@@ -135,6 +135,7 @@ public class Document implements Comparable<Document> {
     /**
      * Fungsi untuk membaca sebuah file *.txt dan hasil baca dimasukkan ke
      * atribut content
+     *
      * @param idDoc
      * @param file
      */
@@ -229,19 +230,18 @@ public class Document implements Comparable<Document> {
      * Fungsi untuk mensteming content dalam bahasa indonesia
      */
     public void IndonesiaStemming() {
-        String text = content;
-        Version matchVersion = Version.LUCENE_7_7_0;
+        Version matchVersion = Version.LUCENE_7_7_0; // Substitute desired Lucene version for XY
         Analyzer analyzer = new IndonesianAnalyzer();
         analyzer.setVersion(matchVersion);
-
-        //ambil stopwords
-        CharArraySet stopword = IndonesianAnalyzer.getDefaultStopSet();
+        // ambil stopwords
+        CharArraySet stopWords = IndonesianAnalyzer.getDefaultStopSet();
         // buat token
-        TokenStream tokenStream = analyzer.tokenStream("myField",
-                new StringReader(text.trim()));
-
-        tokenStream = new StopFilter(tokenStream, stopword);
-
+        TokenStream tokenStream = analyzer.tokenStream(
+                "myField",
+                new StringReader(realContent.trim()));
+        // buang stop word
+        tokenStream = new StopFilter(tokenStream, stopWords);
+        // buat string baru tanpa stopword
         StringBuilder sb = new StringBuilder();
         CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
         try {
@@ -250,8 +250,8 @@ public class Document implements Comparable<Document> {
                 String term = charTermAttribute.toString();
                 sb.append(term).append(" ");
             }
-        } catch (IOException e) {
-            System.out.println("Exection: " + e);
+        } catch (IOException ex) {
+            System.out.println("Exception: " + ex);
         }
         content = sb.toString();
     }
