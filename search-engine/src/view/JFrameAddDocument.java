@@ -36,9 +36,12 @@ public class JFrameAddDocument extends javax.swing.JFrame {
         contentDocLabel = new javax.swing.JLabel();
         contentDocTextField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
+        titleDocLabel = new javax.swing.JLabel();
+        TitleDocTextField = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         addDocMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         addDorectoryMenuItem = new javax.swing.JMenuItem();
         searchMenu = new javax.swing.JMenu();
 
@@ -58,6 +61,8 @@ public class JFrameAddDocument extends javax.swing.JFrame {
             }
         });
 
+        titleDocLabel.setText("Title");
+
         fileMenu.setText("File");
 
         addDocMenuItem.setText("Add Document");
@@ -68,7 +73,10 @@ public class JFrameAddDocument extends javax.swing.JFrame {
         });
         fileMenu.add(addDocMenuItem);
 
-        addDorectoryMenuItem.setText("Add Directory");
+        jMenuItem1.setText("Open Document");
+        fileMenu.add(jMenuItem1);
+
+        addDorectoryMenuItem.setText("Open Directory");
         addDorectoryMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDorectoryMenuItemActionPerformed(evt);
@@ -101,19 +109,22 @@ public class JFrameAddDocument extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contentDocLabel)
-                    .addComponent(idDocLabel))
+                    .addComponent(idDocLabel)
+                    .addComponent(titleDocLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(contentDocTextField)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(idDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 276, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TitleDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,17 +133,17 @@ public class JFrameAddDocument extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idDocLabel)
                     .addComponent(idDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleDocLabel)
+                    .addComponent(TitleDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(contentDocLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(contentDocTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(saveButton)
-                        .addGap(18, 18, 18))))
+                    .addComponent(contentDocLabel)
+                    .addComponent(contentDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(saveButton)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -214,6 +225,7 @@ public class JFrameAddDocument extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TitleDocTextField;
     private javax.swing.JMenuItem addDocMenuItem;
     private javax.swing.JMenuItem addDorectoryMenuItem;
     private javax.swing.JLabel contentDocLabel;
@@ -221,8 +233,10 @@ public class JFrameAddDocument extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel idDocLabel;
     private javax.swing.JTextField idDocTextField;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton saveButton;
     private javax.swing.JMenu searchMenu;
+    private javax.swing.JLabel titleDocLabel;
     // End of variables declaration//GEN-END:variables
 }
