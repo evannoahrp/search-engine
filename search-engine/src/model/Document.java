@@ -28,6 +28,7 @@ import org.apache.lucene.util.Version;
 public class Document implements Comparable<Document> {
 
     private int id;
+    private String title; // atribut title yang dianalisis
     private String content; // atribut content yang dianalisis
     private String realContent; // atribut content asli
 
@@ -47,6 +48,20 @@ public class Document implements Comparable<Document> {
         this.id = id;
         this.content = content;
         this.realContent = content;
+    }
+
+    public Document(int id, String title, String content) {
+        this.id = id;
+        this.content = content;
+        this.realContent = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
