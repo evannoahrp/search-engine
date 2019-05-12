@@ -179,7 +179,7 @@ public class JFrameHome extends javax.swing.JFrame {
                         .addComponent(jSeparator2)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(addDocButton)
@@ -192,7 +192,7 @@ public class JFrameHome extends javax.swing.JFrame {
                                     .addGap(38, 38, 38)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(idDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TitleDocTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(TitleDocTextField))))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +272,7 @@ public class JFrameHome extends javax.swing.JFrame {
             File dir = fileChooser.getSelectedFile();
             // baca isi directory
             File files[] = dir.listFiles();
-            for (int i = Integer.parseInt(idDocTextField.getText()); i < files.length; i++) {
+            for (int i = 0; i < files.length; i++) {
                 // buat document baru
                 Document doc = new Document();
                 doc.setId(i + 1); // set idDoc sama dengan i
