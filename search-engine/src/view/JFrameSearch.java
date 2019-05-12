@@ -45,6 +45,7 @@ public class JFrameSearch extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         addDocMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         addDirectoryMenuItem = new javax.swing.JMenuItem();
         searchMenu = new javax.swing.JMenu();
 
@@ -61,16 +62,29 @@ public class JFrameSearch extends javax.swing.JFrame {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Document", "Content Document", "Similarity"
+                "ID Document", "Title", "Content Document", "Similarity"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scrollPane.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setResizable(false);
+            table.getColumnModel().getColumn(1).setResizable(false);
+            table.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         fileMenu.setText("File");
         fileMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +101,10 @@ public class JFrameSearch extends javax.swing.JFrame {
         });
         fileMenu.add(addDocMenuItem);
 
-        addDirectoryMenuItem.setText("Add Directory");
+        jMenuItem1.setText("Open Document");
+        fileMenu.add(jMenuItem1);
+
+        addDirectoryMenuItem.setText("Open Directory");
         addDirectoryMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addDirectoryMenuItemActionPerformed(evt);
@@ -155,8 +172,9 @@ public class JFrameSearch extends javax.swing.JFrame {
         queryTextField.setText("");
         for (int i = 0; i < search.size(); i++) {
             table.setValueAt(search.get(i).getDocument().getId(), i, 0);
-            table.setValueAt(search.get(i).getDocument().getContent(), i, 1);
-            table.setValueAt(search.get(i).getSimilarity(), i, 2);
+            table.setValueAt(search.get(i).getDocument().getTitle(), i, 1);
+            table.setValueAt(search.get(i).getDocument().getContent(), i, 2);
+            table.setValueAt(search.get(i).getSimilarity(), i, 3);
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -223,6 +241,7 @@ public class JFrameSearch extends javax.swing.JFrame {
     private javax.swing.JMenuItem addDirectoryMenuItem;
     private javax.swing.JMenuItem addDocMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel queryLabel;
     private javax.swing.JTextField queryTextField;
