@@ -260,6 +260,7 @@ public class JFrameSearch extends javax.swing.JFrame {
                 File file = files[i];
                 doc.setTitle(file.getName());
                 doc.readFile(i + 1, file);
+                doc.stemming();
                 // masukkan file isi directory ke list of document pada obyek index
                 index.addNewDocument(doc);
             }
