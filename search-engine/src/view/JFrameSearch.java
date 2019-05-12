@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import model.Document;
 import model.InvertedIndex;
 import model.SearchingResult;
+import static view.JFrameHome.index;
 
 /**
  *
@@ -263,6 +264,13 @@ public class JFrameSearch extends javax.swing.JFrame {
                 index.addNewDocument(doc);
             }
         }
+        ArrayList<Document> list = index.getListOfDocument();
+        for (int i = 0; i < list.size(); i++) {
+            table.setValueAt(list.get(i).getId(), i, 0);
+            table.setValueAt(list.get(i).getTitle(), i, 1);
+            table.setValueAt(list.get(i).getContent(), i, 2);
+        }
+        index.makeDictionaryWithTermNumber();
     }//GEN-LAST:event_addDirectoryMenuItemActionPerformed
 
     /**
