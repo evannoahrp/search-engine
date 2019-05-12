@@ -277,7 +277,7 @@ public class Document implements Comparable<Document> {
         // buat token
         TokenStream tokenStream = analyzer.tokenStream(
                 "myField",
-                new StringReader(realContent.trim()));
+                new StringReader(content.trim()));
         // buang stop word
         tokenStream = new StopFilter(tokenStream, stopWords);
         // buat string baru tanpa stopword

@@ -562,4 +562,28 @@ public class InvertedIndex {
         // lakukan indexing atau buat dictionary
         this.makeDictionaryWithTermNumber();
     }
+
+    /**
+     * Fungsi untuk membuat list dokumen dari sebuah directory asumsikan isi
+     * file cukup disimpan dalam sebuah obyek String
+     *
+     * @param directory
+     */
+    public void readDocument(File directory) {
+        File files[] = directory.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            // buat document baru
+            Document doc = new Document();
+            doc.setId(i + 1); // set idDoc sama dengan i
+            // baca isi file
+            // Isi file disimpan di atribut content dari objeck document
+            // variabel i merupakan idDocument;
+            File file = files[i];
+            doc.readFile((i + 1), file);
+            // masukkan file isi directory ke list of document pada obye index
+            this.addNewDocument(doc);
+        }
+        // lakukan indexing atau buat dictionary
+        this.makeDictionaryWithTermNumber();
+    }
 }
