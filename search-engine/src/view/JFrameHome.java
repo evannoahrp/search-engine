@@ -299,6 +299,7 @@ public class JFrameHome extends javax.swing.JFrame {
             doc.setTitle(TitleDocTextField.getText());
             doc.setContent(contentDocTextField.getText());
             doc.setRealContent(contentDocTextField.getText());
+            doc.IndonesiaStemming();
             index.addNewDocument(doc);
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + 1));
             TitleDocTextField.setText("");

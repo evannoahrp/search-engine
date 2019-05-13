@@ -513,10 +513,13 @@ public class InvertedIndex {
      * @return
      */
     public ArrayList<SearchingResult> searchCosineSimilarity(String query) {
+        //parameter query di steaming
+        Document querySteaming = new Document(query);
+        querySteaming.IndonesiaStemming();
         // buat list search document
         ArrayList<SearchingResult> result = new ArrayList<SearchingResult>();
         // ubah query menjadi array list posting
-        ArrayList<Posting> queryPostingList = getQueryPosting(query);
+        ArrayList<Posting> queryPostingList = getQueryPosting(querySteaming.getContent());
         // buat posting list untuk seluruh dokumen
         for (int i = 0; i < listOfDocument.size(); i++) {
             // ambil obyek dokumen
@@ -548,32 +551,12 @@ public class InvertedIndex {
     public void readDirectory(File directory) {
         File files[] = directory.listFiles();
         for (int i = 0; i < files.length; i++) {
-            // buat document baru
             Document doc = new Document();
-            doc.setId(listOfDocument.size() + 1); // set idDoc sama dengan i
-            // baca isi file
-            // Isi file disimpan di atribut content dari objeck document
-            // variabel i merupakan idDocument;
+            doc.setId(listOfDocument.size() + 1);
             File file = files[i];
             doc.readFile((i + 1), file);
-            // masukkan file isi directory ke list of document pada obye index
             this.addNewDocument(doc);
         }
-        // lakukan indexing atau buat dictionary
         this.makeDictionaryWithTermNumber();
-    }
-
-    /**
-     * Fungsi untuk membuat list dokumen dari sebuah directory asumsikan isi
-     * file cukup disimpan dalam sebuah obyek String
-     *
-     * @param id
-     * @param document
-     */
-    public void readDocument(int id, File document) {
-        Document doc = new Document();
-        doc.readFile(id, document);
-        addNewDocument(doc);
-        makeDictionaryWithTermNumber();
     }
 }
