@@ -304,6 +304,7 @@ public class JFrameHome extends javax.swing.JFrame {
             TitleDocTextField.setText("");
             contentDocTextField.setText("");
             showTable();
+            index.makeDictionaryWithTermNumber();
         } catch (NumberFormatException e) {
             System.out.println("Message : " + e.getMessage());
         }
