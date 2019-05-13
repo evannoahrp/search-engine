@@ -338,7 +338,24 @@ public class JFrameHome extends javax.swing.JFrame {
     }//GEN-LAST:event_addDirButtonActionPerformed
 
     private void addDocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocButtonActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int returnVal = fileChooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            // baca directory
+            File file = fileChooser.getSelectedFile();
+            // buat document baru
+            Document doc = new Document();
+            // baca isi file
+            // Isi file disimpan di atribut content dari objeck document
+            doc.readFile(Integer.parseInt(idDocTextField.getText()), file);
+            doc.IndonesiaStemming();
+            // masukkan file isi directory ke list of document pada obyek index
+            index.addNewDocument(doc);
+
+            idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + 1));
+        }
+        showTable();
+        index.makeDictionaryWithTermNumber();
     }//GEN-LAST:event_addDocButtonActionPerformed
 
     private void clearTable() {
