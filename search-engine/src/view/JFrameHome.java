@@ -57,9 +57,50 @@ public class JFrameHome extends javax.swing.JFrame {
         addDirButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -290,6 +331,7 @@ public class JFrameHome extends javax.swing.JFrame {
             }
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + files.length));
         }
+        clearTable();
         ArrayList<Document> list = index.getListOfDocument();
         for (int i = 0; i < list.size(); i++) {
             table.setValueAt(list.get(i).getId(), i, 0);
@@ -302,12 +344,49 @@ public class JFrameHome extends javax.swing.JFrame {
     private void addDocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addDocButtonActionPerformed
-
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        ArrayList<SearchingResult> search = index.searchCosineSimilarity(queryTextField.getText());
-        queryTextField.setText("");
+    private void clearTable() {
         table.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
                     {null, null, null, null},
                     {null, null, null, null},
                     {null, null, null, null},
@@ -373,11 +452,17 @@ public class JFrameHome extends javax.swing.JFrame {
                     "ID", "Title", "Content", "Similarity"
                 }
         ));
+    }
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        ArrayList<SearchingResult> search = index.searchCosineSimilarity(queryTextField.getText());
+        clearTable();
         for (int i = 0; i < search.size(); i++) {
             table.setValueAt(search.get(i).getDocument().getId(), i, 0);
             table.setValueAt(search.get(i).getDocument().getTitle(), i, 1);
             table.setValueAt(search.get(i).getDocument().getContent(), i, 2);
             table.setValueAt(search.get(i).getSimilarity(), i, 3);
+            search.get(i).setSimilarity(0);
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 

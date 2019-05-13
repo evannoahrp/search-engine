@@ -550,7 +550,7 @@ public class InvertedIndex {
         for (int i = 0; i < files.length; i++) {
             // buat document baru
             Document doc = new Document();
-            doc.setId(i + 1); // set idDoc sama dengan i
+            doc.setId(listOfDocument.size() + 1); // set idDoc sama dengan i
             // baca isi file
             // Isi file disimpan di atribut content dari objeck document
             // variabel i merupakan idDocument;
@@ -567,15 +567,13 @@ public class InvertedIndex {
      * Fungsi untuk membuat list dokumen dari sebuah directory asumsikan isi
      * file cukup disimpan dalam sebuah obyek String
      *
-     * @param directory
+     * @param id
+     * @param document
      */
-    public void readDocument(File directory) {
-        int idDoc = listOfDocument.size() + 1;
+    public void readDocument(int id, File document) {
         Document doc = new Document();
-        doc.readFile(idDoc, directory);
-        System.out.println(idDoc);
+        doc.readFile(id, document);
         addNewDocument(doc);
         makeDictionaryWithTermNumber();
-        idDoc++;
     }
 }
