@@ -475,7 +475,7 @@ public class JFrameHome extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
             table.setValueAt(list.get(i).getId(), i, 0);
             table.setValueAt(list.get(i).getTitle(), i, 1);
-            table.setValueAt(list.get(i).getContent(), i, 2);
+            table.setValueAt(list.get(i).getRealContent(), i, 2);
         }
     }
 
