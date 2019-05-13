@@ -549,6 +549,6 @@ public class JFrameHome extends javax.swing.JFrame {
      * @param index the index to set
      */
     public void setIndex(InvertedIndex index) {
-        JFrameSearch.index = index;
+        this.index = index;
     }
 }
