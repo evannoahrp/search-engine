@@ -8,11 +8,9 @@ package view;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
-import javax.swing.table.TableModel;
 import model.Document;
 import model.InvertedIndex;
 import model.SearchingResult;
-import static view.JFrameSearch.index;
 
 /**
  *
@@ -300,7 +298,7 @@ public class JFrameHome extends javax.swing.JFrame {
             doc.setId(Integer.parseInt(idDocTextField.getText()));
             doc.setTitle(TitleDocTextField.getText());
             doc.setContent(contentDocTextField.getText());
-            JFrameSearch.index.addNewDocument(doc);
+            index.addNewDocument(doc);
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + 1));
             TitleDocTextField.setText("");
             contentDocTextField.setText("");
@@ -323,13 +321,11 @@ public class JFrameHome extends javax.swing.JFrame {
             for (int i = 0; i < files.length; i++) {
                 // buat document baru
                 Document doc = new Document();
-                doc.setId(i + 1); // set idDoc sama dengan i
                 // baca isi file
                 // Isi file disimpan di atribut content dari objeck document
                 // variabel i merupakan idDocument;
                 File file = files[i];
-                doc.setTitle(file.getName());
-                doc.readFile(i + 1, file);
+                doc.readFile(Integer.parseInt(idDocTextField.getText()) + i, file);
                 doc.IndonesiaStemming();
                 // masukkan file isi directory ke list of document pada obyek index
                 index.addNewDocument(doc);

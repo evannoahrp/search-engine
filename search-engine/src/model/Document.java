@@ -160,6 +160,9 @@ public class Document implements Comparable<Document> {
     public void readFile(int idDoc, File file) {
         // simpan id doc
         this.id = idDoc;
+        //baca judul
+        String fileName = file.getName();
+        this.title = fileName.substring(0, fileName.lastIndexOf("."));
         // baca file
         try {
             // menyimpan file ke objek bacaFile
