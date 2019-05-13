@@ -175,6 +175,7 @@ public class Document implements Comparable<Document> {
                 // melakukan looping
                 while ((str = bufReader.readLine()) != null) {
                     // menyimpan str ke content
+                    this.setRealContent(str);
                     this.setContent(str);
                 }
                 // menutup bufReader

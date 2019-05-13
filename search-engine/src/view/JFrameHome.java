@@ -298,6 +298,7 @@ public class JFrameHome extends javax.swing.JFrame {
             doc.setId(Integer.parseInt(idDocTextField.getText()));
             doc.setTitle(TitleDocTextField.getText());
             doc.setContent(contentDocTextField.getText());
+            doc.setRealContent(contentDocTextField.getText());
             index.addNewDocument(doc);
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + 1));
             TitleDocTextField.setText("");
@@ -466,7 +467,7 @@ public class JFrameHome extends javax.swing.JFrame {
         for (int i = 0; i < search.size(); i++) {
             table.setValueAt(search.get(i).getDocument().getId(), i, 0);
             table.setValueAt(search.get(i).getDocument().getTitle(), i, 1);
-            table.setValueAt(search.get(i).getDocument().getContent(), i, 2);
+            table.setValueAt(search.get(i).getDocument().getRealContent(), i, 2);
             table.setValueAt(search.get(i).getSimilarity(), i, 3);
             search.get(i).setSimilarity(0);
         }
