@@ -351,7 +351,6 @@ public class JFrameHome extends javax.swing.JFrame {
             doc.IndonesiaStemming();
             // masukkan file isi directory ke list of document pada obyek index
             index.addNewDocument(doc);
-
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + 1));
         }
         showTable();
