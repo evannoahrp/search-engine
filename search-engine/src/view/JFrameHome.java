@@ -296,10 +296,15 @@ public class JFrameHome extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
-            JFrameSearch.index.addNewDocument(new Document(Integer.parseInt(idDocTextField.getText()), contentDocTextField.getText()));
+            Document doc = new Document();
+            doc.setId(Integer.parseInt(idDocTextField.getText()));
+            doc.setTitle(TitleDocTextField.getText());
+            doc.setContent(contentDocTextField.getText());
+            JFrameSearch.index.addNewDocument(doc);
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + 1));
             TitleDocTextField.setText("");
             contentDocTextField.setText("");
+            showTable();
         } catch (NumberFormatException e) {
             System.out.println("Message : " + e.getMessage());
         }
@@ -331,19 +336,14 @@ public class JFrameHome extends javax.swing.JFrame {
             }
             idDocTextField.setText(String.valueOf(Integer.parseInt(idDocTextField.getText()) + files.length));
         }
-        clearTable();
-        ArrayList<Document> list = index.getListOfDocument();
-        for (int i = 0; i < list.size(); i++) {
-            table.setValueAt(list.get(i).getId(), i, 0);
-            table.setValueAt(list.get(i).getTitle(), i, 1);
-            table.setValueAt(list.get(i).getContent(), i, 2);
-        }
+        showTable();
         index.makeDictionaryWithTermNumber();
     }//GEN-LAST:event_addDirButtonActionPerformed
 
     private void addDocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addDocButtonActionPerformed
+
     private void clearTable() {
         table.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
@@ -452,6 +452,16 @@ public class JFrameHome extends javax.swing.JFrame {
                     "ID", "Title", "Content", "Similarity"
                 }
         ));
+    }
+
+    private void showTable() {
+        clearTable();
+        ArrayList<Document> list = index.getListOfDocument();
+        for (int i = 0; i < list.size(); i++) {
+            table.setValueAt(list.get(i).getId(), i, 0);
+            table.setValueAt(list.get(i).getTitle(), i, 1);
+            table.setValueAt(list.get(i).getContent(), i, 2);
+        }
     }
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
