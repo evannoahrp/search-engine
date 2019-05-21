@@ -359,7 +359,6 @@ public class InvertedIndex {
             }
             return 0;
         }
-
         return 0;
     }
 
@@ -461,16 +460,21 @@ public class InvertedIndex {
      */
     public double getCosineSimilarity(ArrayList<Posting> posting,
             ArrayList<Posting> posting1) {
-        // cari jarak antara posting dan posting 1
-        double hasilDotProduct = getInnerProduct(posting, posting1);
-        // cari panjang posting
-        double panjang_posting = getLengthOfPosting(posting);
-        // cari panjang posting1
-        double panjang_posting1 = getLengthOfPosting(posting1);
-        // hitung cosine similarity
-        double result
-                = hasilDotProduct / Math.sqrt(panjang_posting * panjang_posting1);
-        return result;
+        double innerProduct = getInnerProduct(posting, posting1);
+        double tempPost = 0;
+        double tempQuery = 0;
+        for (int i = 0; i < posting.size(); i++) {
+            tempQuery = tempQuery + Math.pow(posting.get(i).getWeight(), 2);
+        }
+        for (int i = 0; i < posting1.size(); i++) {
+            tempPost = tempPost + Math.pow(posting1.get(i).getWeight(), 2);
+        }
+        double sqrt = Math.sqrt(tempPost * tempQuery);
+        double hasil = innerProduct / sqrt;
+        if (hasil == 0) {
+            return 0;
+        }
+        return hasil;
     }
 
     /**
@@ -481,7 +485,7 @@ public class InvertedIndex {
      */
     public ArrayList<SearchingResult> searchTFIDF(String query) {
         // buat list search document
-        ArrayList<SearchingResult> result = new ArrayList<SearchingResult>();
+        ArrayList<SearchingResult> result = new ArrayList<>();
         // ubah query menjadi array list posting
         ArrayList<Posting> queryPostingList = getQueryPosting(query);
         // buat posting list untuk seluruh dokumen
@@ -517,7 +521,7 @@ public class InvertedIndex {
         Document querySteaming = new Document(query);
         querySteaming.IndonesiaStemming();
         // buat list search document
-        ArrayList<SearchingResult> result = new ArrayList<SearchingResult>();
+        ArrayList<SearchingResult> result = new ArrayList<>();
         // ubah query menjadi array list posting
         ArrayList<Posting> queryPostingList = getQueryPosting(querySteaming.getContent());
         // buat posting list untuk seluruh dokumen
