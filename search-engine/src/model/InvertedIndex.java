@@ -471,9 +471,6 @@ public class InvertedIndex {
         }
         double sqrt = Math.sqrt(tempPost * tempQuery);
         double hasil = innerProduct / sqrt;
-        if (hasil == 0) {
-            return 0;
-        }
         return hasil;
     }
 
